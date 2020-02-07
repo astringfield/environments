@@ -8,6 +8,6 @@ RUN apt-get update && apt-get install -y\
     git\
     curl
 RUN pip3 install numpy PILLOW opencv-python torch torchvision
-RUN pip3 install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric               
+#RUN pip3 install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric               
 ENTRYPOINT bash
 
