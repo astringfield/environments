@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y\
     git\
     curl
 RUN pip3 install numpy PILLOW opencv-python torch torchvision
+# Follwing pip packages require "--gpus all" flag to install, therefore this is done in build.sh script and not here.
 #RUN pip3 install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric               
 ENTRYPOINT bash
 
