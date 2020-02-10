@@ -1,0 +1,16 @@
+enlog.0 
+[01;32mjosh@threadripper[00m:[01;34m~/repositories/environments/pytorch/pytorch1.4_cuda10.1[00m$ git add screenlog.0 
+[01;32mjosh@threadripper[00m:[01;34m~/repositories/environments/pytorch/pytorch1.4_cuda10.1[00m$ git commit -m ""r"m" "s"c"r"e"e"n"l"o"g"
+[master c3784af] rm screenlog
+ 1 file changed, 729 deletions(-)
+ rewrite pytorch/pytorch1.4_cuda10.1/screenlog.0 (100%)
+[01;32mjosh@threadripper[00m:[01;34m~/repositories/environments/pytorch/pytorch1.4_cuda10.1[00m$ git re[K[K[K[K[K[Kgit push
+Counting objects: 5, done.
+Delta compression using up to 32 threads.
+Compressing objects:  33% (1/3)   Compressing objects:  66% (2/3)   Compressing objects: 100% (3/3)   Compressing objects: 100% (3/3), done.
+Writing objects:  20% (1/5)   Writing objects:  40% (2/5)   Writing objects:  60% (3/5)   Writing objects:  80% (4/5)   Writing objects: 100% (5/5)   Writing objects: 100% (5/5), 377 bytes | 377.00 KiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/2)[Kremote: Resolving deltas:  50% (1/2)[Kremote: Resolving deltas: 100% (2/2)[Kremote: Resolving deltas: 100% (2/2), completed with 2 local objects.[K
+To github.com:ThorpeJosh/environments.git
+   9d6c7ca..c3784af  master -> master
+[01;32mjosh@threadripper[00m:[01;34m~/repositories/environments/pytorch/pytorch1.4_cuda10.1[00m$ 
