@@ -1,8 +1,9 @@
 #!/bin/bash
-echo installing docker for Ubuntu18.04
 # Installs latest docker and nvidia toolkit to enable gpu acces inside of containers
+
+echo installing docker for Ubuntu, as per https://docs.docker.com/install/linux/docker-ce/ubuntu/
 sudo apt-get remove docker docker-engine docker.io containerd runc
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+sudo apt update && sudo apt install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt update
@@ -12,13 +13,13 @@ echo install complete, now checking if successful
 sudo systemctl status docker
 sudo docker run hello-world
 
-# To allow your user to run docker commands then execute the following else only root has access
+# To allow your user to run docker commands then execute the following, else only root has access
 echo adding ${USER} to the docker group
 sudo usermod -aG docker ${USER}
 
 
 
-echo now installing nvidia toolkit
+echo installing nvidia toolkit, as per https://github.com/NVIDIA/nvidia-docker
 # Add the package repositories
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
@@ -27,4 +28,5 @@ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.li
 sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
 sudo systemctl restart docker
 sudo systemctl status docker
+echo testing nvidia toolkit, output of nvidia-smi should show
 docker run --rm --gpus all nvidia/cuda:9.0-base nvidia-smi
