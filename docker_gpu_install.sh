@@ -30,3 +30,18 @@ sudo systemctl restart docker
 sudo systemctl status docker
 echo testing nvidia toolkit, output of nvidia-smi should show
 docker run --rm --gpus all nvidia/cuda:9.0-base nvidia-smi
+
+# To change the default runtime to nvidi-container-runtime to grant gpu access during docker build
+sudo tee /etc/docker/daemon.json <<EOF
+{
+    "runtimes": {
+        "nvidia": {
+            "path": "/usr/bin/nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    }
+}
+EOF
+sudo pkill -SIGHUP dockerd
+sudo apt-get install nvidia-container-runtime
+sudo systemctl restart docker.service
