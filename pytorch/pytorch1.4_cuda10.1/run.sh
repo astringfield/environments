@@ -11,4 +11,4 @@ else
     echo container does not exist, starting container now
 fi
 
-docker run -it --name $NAME --gpus all -v $HOME/repositories:/repositories -u josh $NAME bash
+docker run -it --shm-size="20G" --name $NAME --gpus all -v $HOME/repositories:/repositories -u josh $NAME bash
