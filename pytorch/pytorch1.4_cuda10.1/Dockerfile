@@ -17,10 +17,14 @@ RUN apt-get update \
     locales \
     fonts-liberation \
     run-one \
+    ffmpeg \
+    zip \
+    unzip \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN pip3 install --upgrade pip
-RUN pip3 install --no-cache-dir numpy PILLOW opencv-python torch torchvision hdf5storage 
+RUN pip3 install --no-cache-dir torch==1.4.0 torchvision==0.5.0
 RUN pip3 install --no-cache-dir torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric
+RUN pip3 install --no-cache-dir numpy PILLOW opencv-python autograd scipy hdf5storage tqdm
 RUN adduser --disabled-password --gecos '' josh
 RUN adduser josh sudo
 
