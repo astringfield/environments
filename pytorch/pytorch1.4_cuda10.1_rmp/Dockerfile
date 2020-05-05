@@ -37,6 +37,9 @@ RUN jupyter nbextension enable varInspector/main
 RUN jupyter nbextension install --py jupyter_highlight_selected_word
 RUN jupyter nbextension enable highlight_selected_word/main
 
+# Torch_geometric dependencies
+RUN pip3 install --no-cache-dir networkx sklearn
+
 RUN adduser --disabled-password --gecos '' josh
 RUN adduser josh sudo
 EXPOSE 8888
