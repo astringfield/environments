@@ -1,5 +1,5 @@
 FROM jenkins/jenkins:lts
-# if we want to install via apt
+# Install all necesarry apt packages
 USER root
 RUN apt-get update && apt-get install -y \
     python3-dev\
@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
     git\
     virtualenv\
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Arduino-cli
+RUN curl -fsSL --retry 5 --retry-delay 5 https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/usr/bin sh
+
 # drop back to the regular jenkins user - good practice
 USER jenkins
-
