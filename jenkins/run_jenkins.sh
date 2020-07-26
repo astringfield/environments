@@ -1,5 +1,5 @@
 #!/bin/bash
-NAME="jenkins_build"
+NAME="my_jenkins"
 
 docker run --name jenkins --rm --detach \
         -v jenkins_home:/var/jenkins_home \
