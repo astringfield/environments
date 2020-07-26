@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 
-NAME="jenkins_build"
+NAME="my_jenkins"
 docker build -t $NAME .
