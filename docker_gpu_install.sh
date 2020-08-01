@@ -29,7 +29,7 @@ sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
 sudo systemctl restart docker
 sudo systemctl status docker
 echo testing nvidia toolkit, output of nvidia-smi should show
-docker run --rm --gpus all nvidia/cuda:9.0-base nvidia-smi
+docker run --rm --gpus all nvidia/cuda:10.0-base nvidia-smi
 
 # To change the default runtime to nvidi-container-runtime to grant gpu access during docker build
 sudo tee /etc/docker/daemon.json <<EOF
@@ -43,5 +43,54 @@ sudo tee /etc/docker/daemon.json <<EOF
 }
 EOF
 sudo pkill -SIGHUP dockerd
+sudo apt-get install nvidia-container-runtime
+sudo systemctl restart docker.service
+
+exit 0
+
+
+
+
+#For an arch install use the following
+sudo pacman -S docker
+sudo systemctl start docker
+sudo systemctl status docker
+
+# To allow your user to run docker commands then execute the following, else only root has access
+echo adding ${USER} to the docker group
+sudo usermod -aG docker ${USER}
+
+# Test docker install
+docker run hello-world
+
+# Nvidia tookit install
+echo ensure nvidia drivers are up to date
+cd $HOME/AUR
+git clone https://aur.archlinux.org/libnvidia-container.git
+cd libnvidia-container
+makepkg -sri
+cd $HOME/AUR
+git clone https://aur.archlinux.org/nvidia-container-toolkit.git
+cd nvidia-container-toolkit
+makepkg -sri
+docker run --rm --gpus all nvidia/cuda:10.0-base nvidia-smi
+
+# To change the default runtime to nvidi-container-runtime to grant gpu access during docker build
+sudo tee /etc/docker/daemon.json <<EOF
+{
+    "runtimes": {
+        "nvidia": {
+            "path": "/usr/bin/nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    }
+}
+EOF
+sudo systemctl stop docker.service
+sudo pkill -SIGHUP dockerd
+cd $HOME/AUR
+git clone https://aur.archlinux.org/nvidia-container-runtime.git
+cd nvidia-container-runtime
+makepkg -sri
 sudo apt-get install nvidia-container-runtime
 sudo systemctl restart docker.service
