@@ -1,7 +1,8 @@
 #!/bin/bash
+set -e
 # Script to run a tensorboard session independant of any other environments
 
-LOGDIR=/home/josh/repositories/NeuRoRA/tb_logs
+LOGDIR=/home/josh/repositories/NeuRoRA/runs
 
 if [ ! -d venv ]
 then
