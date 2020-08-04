@@ -23,7 +23,11 @@ RUN apt-get update \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir torch==1.4.0 torchvision==0.5.0
-RUN pip3 install --no-cache-dir torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric
+RUN pip install --no-cache-dir torch-scatter==latest+cu101 -f https://pytorch-geometric.com/whl/torch-1.4.0.html
+RUN pip install --no-cache-dir torch-sparse==latest+cu101 -f https://pytorch-geometric.com/whl/torch-1.4.0.html
+RUN pip install --no-cache-dir torch-cluster==latest+cu101 -f https://pytorch-geometric.com/whl/torch-1.4.0.html
+RUN pip install --no-cache-dir torch-spline-conv==latest+cu101 -f https://pytorch-geometric.com/whl/torch-1.4.0.html
+RUN pip install --no-cache-dir torch-geometric==1.4.3
 RUN pip3 install --no-cache-dir numpy PILLOW opencv-python autograd scipy hdf5storage 
 # Following block is for jupyter notebooks
 RUN pip3 install --no-cache-dir ipython

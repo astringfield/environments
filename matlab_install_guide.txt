@@ -1,0 +1,9 @@
+# Matlab on arch is missing dependencies, install these dependencies from the AUR first.
+https://aur.archlinux.org/libsepol.git
+https://aur.archlinux.org/libselinux.git
+
+# Then extracting the matlab zip as follows apparently helps too
+unzip -X -K matlab_R2020a_glnxa64.zip
+
+# Then run 
+bash install
