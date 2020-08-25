@@ -26,27 +26,26 @@ RUN apt-get update \
     python3-pip\
     python3-setuptools\
  && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # Force default python to be 3.8
 RUN ln -sf /usr/bin/python3.8 /usr/bin/python3
+
+# Install the pytorch packages
 RUN python3.8 -m pip install --upgrade pip
 RUN python3.8 -m pip install --no-cache-dir torch==1.6.0 torchvision==0.7.0
 RUN python3.8 -m pip install --no-cache-dir torch-scatter==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.6.0.html
-# Wheels aren't available for torch==1.6 so I have built from source
-COPY ./torch_sparse-0.6.6-cp38-cp38-linux_x86_64.whl /root/wheels/
-COPY ./torch_cluster-1.5.6-cp38-cp38-linux_x86_64.whl /root/wheels/
-RUN python3.8 -m pip install /root/wheels/torch_sparse-0.6.6-cp38-cp38-linux_x86_64.whl
-RUN python3.8 -m pip install /root/wheels/torch_cluster-1.5.6-cp38-cp38-linux_x86_64.whl
-#RUN pip install --no-cache-dir torch-sparse==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.6.0.html
-#RUN pip install --no-cache-dir torch-cluster==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.6.0.html
+RUN python3.8 -m pip install --no-cache-dir torch-sparse==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.6.0.html
+RUN python3.8 -m pip install --no-cache-dir torch-cluster==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.6.0.html
 RUN python3.8 -m pip install --no-cache-dir torch-spline-conv==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.6.0.html
-RUN python3.8 -m pip install --no-cache-dir torch-geometric==1.6.0
-RUN python3.8 -m pip install --no-cache-dir numpy PILLOW opencv-python autograd scipy hdf5storage tqdm
+RUN python3.8 -m pip install --no-cache-dir torch-geometric
+RUN python3.8 -m pip install --no-cache-dir numpy PILLOW opencv-python autograd scipy hdf5storage tensorboard tqdm
 
 # Following block is for jupyter notebooks
 RUN python3.8 -m pip install --no-cache-dir ipython
-RUN python3.8 -m pip install --no-cache-dir jupyter notebook
+RUN python3.8 -m pip install --no-cache-dir notebook==5.7.10
 RUN python3.8 -m pip install --no-cache-dir jupyter_contrib_nbextensions
 RUN python3.8 -m pip install --no-cache-dir jupyter_nbextensions_configurator
+RUN python3.8 -m pip install --no-cache-dir jupyter_highlight_selected_word
 RUN jupyter contrib nbextension install --system
 RUN jupyter nbextensions_configurator enable --system
 RUN jupyter nbextension enable codefolding/main

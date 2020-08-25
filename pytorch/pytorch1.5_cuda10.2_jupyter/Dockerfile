@@ -53,5 +53,9 @@ RUN jupyter nbextension enable highlight_selected_word/main
 RUN python3.8 -m pip install tensorboard
 RUN python3.8 -m pip install jupyter-tensorboard
 
+# Change timezone to local to help with tensorboard filenames
+ENV TZ=Australia/Melbourne
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 RUN adduser --disabled-password --gecos '' josh
 RUN adduser josh sudo
