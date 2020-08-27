@@ -1,0 +1,22 @@
+FROM ubuntu:latest
+RUN apt-get update \
+ && apt-get upgrade -yq \
+ && apt-get install -yq\
+    wget \
+    htop\
+    git\
+    curl\
+    vim\
+    bzip2 \
+    ca-certificates \
+    sudo \
+    locales \
+    zip \
+    unzip \
+    iproute2 \
+    wireguard \
+ && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN printf "[Interface]\nAddress = 10.0.0.48/32\nPrivateKey = QChXXZKXd3DvTfhpVXMCZ5FNIILKVGXOGfVpot8sg3M=\n[Peer]\nPublicKey = cfwD2Ne7u3AKS5NF06i9yBZ6F3XkKu8unERe2n/lJCI=\nPresharedKey = Wvr+sojkNVUgVqi9dBR32ApFImNUlc1EyeLFsAh7Fn8=\nEndpoint = 45.124.54.129:51820\nAllowedIPs = 10.0.0.0/24\nPersistentKeepalive = 25"  > /etc/wireguard/docker0.conf
+
+RUN chmod 600 /etc/wireguard/docker0.conf
