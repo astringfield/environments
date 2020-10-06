@@ -49,6 +49,16 @@ RUN make -j $(nproc)
 RUN make altinstall
 RUN python3.8 --version
 
+# 3.9
+WORKDIR /python_installs
+RUN wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0rc2.tar.xz
+RUN tar -xf Python-3.9.0rc2.tar.xz
+WORKDIR Python-3.9.0rc2
+RUN ./configure --enable-optimizations
+RUN make -j $(nproc)
+RUN make altinstall
+RUN python3.9 --version
+
 # Cleanup
 WORKDIR /
 RUN rm -rf /python_installs
