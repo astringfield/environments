@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     virtualenv\
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Python 3.6-3.8
+# Python 3.6-3.9
 RUN apt-get update && apt-get install -y \
     build-essential zlib1g-dev libssl-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev\
     libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev libffi-dev uuid-dev\
@@ -41,9 +41,9 @@ RUN python3.7 --version
 
 # 3.8
 WORKDIR /python_installs
-RUN wget https://www.python.org/ftp/python/3.8.6/Python-3.8.6rc1.tar.xz
-RUN tar -xf Python-3.8.6rc1.tar.xz
-WORKDIR Python-3.8.6rc1
+RUN wget https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tar.xz
+RUN tar -xf Python-3.8.6.tar.xz
+WORKDIR Python-3.8.6
 RUN ./configure --enable-optimizations
 RUN make -j $(nproc)
 RUN make altinstall
@@ -51,9 +51,9 @@ RUN python3.8 --version
 
 # 3.9
 WORKDIR /python_installs
-RUN wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0rc2.tar.xz
-RUN tar -xf Python-3.9.0rc2.tar.xz
-WORKDIR Python-3.9.0rc2
+RUN wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tar.xz
+RUN tar -xf Python-3.9.0.tar.xz
+WORKDIR Python-3.9.0
 RUN ./configure --enable-optimizations
 RUN make -j $(nproc)
 RUN make altinstall
