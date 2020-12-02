@@ -16,7 +16,7 @@ NAME="pytorch1.7_cuda11.0"
 HOSTNAME="dock"
 docker run --rm -it \
     --shm-size="20G" \
-    --name $NAME \
+    --name "$NAME""_dev$(echo $DEVICES | sed 's/,//')" \
     --gpus "\"device=$DEVICES\"" \
     --hostname $HOSTNAME \
     -v $HOME/repositories:/repositories \

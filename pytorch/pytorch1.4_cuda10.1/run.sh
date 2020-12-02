@@ -16,7 +16,7 @@ HOSTNAME="dock"
 
 docker run -it --rm \
     --shm-size="20G" \
-    --name "$NAME""_dev0" \
+    --name "$NAME""_dev$(echo $DEVICES | sed 's/,//')" \
     --gpus "\"device=$DEVICES\"" \
     --hostname $HOSTNAME \
     -v $HOME/repositories:/repositories \
