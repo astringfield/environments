@@ -19,6 +19,7 @@ RUN apt-get update \
     ffmpeg \
     zip \
     unzip \
+    tmux \
     software-properties-common
 RUN apt-get update \
  && apt-get install -yq\
@@ -40,6 +41,7 @@ RUN python3.8 -m pip install --no-cache-dir torch-spline-conv==latest+cu110 -f h
 RUN python3.8 -m pip install --no-cache-dir torch-geometric
 RUN python3.8 -m pip install --no-cache-dir numpy PILLOW opencv-python autograd scipy hdf5storage tensorboard tqdm
 
-RUN adduser --uid 1000 --disabled-password --gecos '' josh
+ARG HOST_UID
+RUN adduser --uid $HOST_UID --disabled-password --gecos '' josh
 RUN adduser josh sudo
 
