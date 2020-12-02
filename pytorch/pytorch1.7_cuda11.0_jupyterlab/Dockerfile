@@ -19,7 +19,9 @@ RUN apt-get update \
     ffmpeg \
     zip \
     unzip \
-    software-properties-common
+    software-properties-common \
+    nodejs \
+    npm
 RUN apt-get update \
  && apt-get install -yq\
     python3.8-dev\
@@ -40,6 +42,13 @@ RUN python3.8 -m pip install --no-cache-dir torch-spline-conv==latest+cu110 -f h
 RUN python3.8 -m pip install --no-cache-dir torch-geometric
 RUN python3.8 -m pip install --no-cache-dir numpy PILLOW opencv-python autograd scipy hdf5storage tensorboard tqdm
 
+# Install JupyterLab and any wanted extensions
+RUN python3.8 -m pip install --no-cache-dir jupyterlab
+RUN jupyter labextension install @lckr/jupyterlab_variableinspector
+
+# Enable extensions
+RUN jupyter nbextension enable highlight_selected_word/main
+RUN jupyter labextension list
+
 RUN adduser --uid 1000 --disabled-password --gecos '' josh
 RUN adduser josh sudo
-
