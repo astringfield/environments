@@ -23,12 +23,12 @@ RUN apt-get update \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir torch==1.4.0 torchvision==0.5.0
-RUN pip install --no-cache-dir torch-scatter==latest+cu101 -f https://pytorch-geometric.com/whl/torch-1.4.0.html
-RUN pip install --no-cache-dir torch-sparse==latest+cu101 -f https://pytorch-geometric.com/whl/torch-1.4.0.html
-RUN pip install --no-cache-dir torch-cluster==latest+cu101 -f https://pytorch-geometric.com/whl/torch-1.4.0.html
-RUN pip install --no-cache-dir torch-spline-conv==latest+cu101 -f https://pytorch-geometric.com/whl/torch-1.4.0.html
-RUN pip install --no-cache-dir torch-geometric==1.4.3
+RUN pip3 install --no-cache-dir torch-scatter -f https://pytorch-geometric.com/whl/torch-1.4.0+cu101.html
+RUN pip3 install --no-cache-dir torch-sparse -f https://pytorch-geometric.com/whl/torch-1.4.0+cu101.html
+RUN pip3 install --no-cache-dir torch-cluster -f https://pytorch-geometric.com/whl/torch-1.4.0+cu101.html
+RUN pip3 install --no-cache-dir torch-spline-conv -f https://pytorch-geometric.com/whl/torch-1.4.0+cu101.html
+RUN pip3 install --no-cache-dir torch-geometric==1.4.3
 RUN pip3 install --no-cache-dir numpy PILLOW opencv-python autograd scipy hdf5storage tqdm
-RUN adduser --disabled-password --gecos '' josh
+RUN adduser --uid 1000 --disabled-password --gecos '' josh
 RUN adduser josh sudo
 
