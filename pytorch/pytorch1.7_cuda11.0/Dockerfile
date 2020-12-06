@@ -1,6 +1,6 @@
 FROM nvidia/cuda:11.0-devel-ubuntu20.04
-MAINTAINER "JT"
-ENV TZ=Australia/Melbourne
+MAINTAINER "JoshThorpe"
+ARG TZ
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update \
  && apt-get install -yq\
@@ -41,7 +41,8 @@ RUN python3.8 -m pip install --no-cache-dir torch-spline-conv==1.2.0 -f https://
 RUN python3.8 -m pip install --no-cache-dir torch-geometric
 RUN python3.8 -m pip install --no-cache-dir numpy PILLOW opencv-python autograd scipy hdf5storage tensorboard tqdm
 
+ARG HOST_USER
 ARG HOST_UID
-RUN adduser --uid $HOST_UID --disabled-password --gecos '' josh
-RUN adduser josh sudo
+RUN adduser --uid $HOST_UID --disabled-password --gecos '' $HOST_USER
+RUN adduser $HOST_USER sudo
 

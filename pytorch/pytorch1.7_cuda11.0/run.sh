@@ -4,8 +4,8 @@
 
 if [ -z "$1" ]
 then
-    echo -n "Which CUDA devices?:"
-    read DEVICES
+    DEVICES="0"
+    read -rp "Which CUDA devices?:" -e -i "$DEVICES" DEVICES
 else
     DEVICES="$1"
 fi
