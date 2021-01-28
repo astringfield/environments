@@ -1,5 +1,5 @@
 #!/bin/bash
-NAME="my_jenkins"
+NAME="thorpejosh/my_jenkins"
 
 if [ $(whoami) != "jenkins" ]
 then
