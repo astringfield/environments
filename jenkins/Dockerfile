@@ -41,9 +41,9 @@ RUN python3.7 --version
 
 # 3.8
 WORKDIR /python_installs
-RUN wget https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tar.xz
-RUN tar -xf Python-3.8.6.tar.xz
-WORKDIR Python-3.8.6
+RUN wget https://www.python.org/ftp/python/3.8.7/Python-3.8.7.tar.xz
+RUN tar -xf Python-3.8.7.tar.xz
+WORKDIR Python-3.8.7
 RUN ./configure --enable-optimizations
 RUN make -j $(nproc)
 RUN make altinstall
@@ -51,9 +51,9 @@ RUN python3.8 --version
 
 # 3.9
 WORKDIR /python_installs
-RUN wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tar.xz
-RUN tar -xf Python-3.9.0.tar.xz
-WORKDIR Python-3.9.0
+RUN wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tar.xz
+RUN tar -xf Python-3.9.1.tar.xz
+WORKDIR Python-3.9.1
 RUN ./configure --enable-optimizations
 RUN make -j $(nproc)
 RUN make altinstall
