@@ -18,8 +18,8 @@ else
     PORT="$2"
 fi
 
-
-NAME="pytorch1.4_cuda10.1_jupyter"
+# Name for container
+NAME="pytorch1.7_cuda11.0_jupyterlab"
 # Hostname of container (used in tensorboard filenames)
 HOSTNAME="dock"
 docker run --rm -it --shm-size="20G" \
@@ -28,7 +28,7 @@ docker run --rm -it --shm-size="20G" \
     --hostname $HOSTNAME \
     -u $USER \
     -p "$PORT:$PORT" \
-    -v $HOME/repositories/:/repositories \
+    -v /home/josh/repositories/:/repositories \
     -v /etc/localtime:/etc/localtime:ro \
     $NAME \
-    jupyter notebook --port="$PORT" --ip=0.0.0.0 --allow-root --no-browser .
+    jupyter lab --port="$PORT" --ip=0.0.0.0 --allow-root --no-browser .

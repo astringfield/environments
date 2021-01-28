@@ -92,5 +92,4 @@ cd $HOME/AUR
 git clone https://aur.archlinux.org/nvidia-container-runtime.git
 cd nvidia-container-runtime
 makepkg -sri
-sudo apt-get install nvidia-container-runtime
 sudo systemctl restart docker.service
