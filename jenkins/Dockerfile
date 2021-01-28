@@ -21,47 +21,50 @@ RUN apt-get update && apt-get install -y \
 
 # 3.6
 WORKDIR /python_installs
-RUN wget https://www.python.org/ftp/python/3.6.12/Python-3.6.12.tar.xz
-RUN tar -xf Python-3.6.12.tar.xz
-WORKDIR Python-3.6.12
-RUN ./configure --enable-optimizations
-RUN make -j $(nproc)
-RUN make altinstall
-RUN python3.6 --version
+RUN wget https://www.python.org/ftp/python/3.6.12/Python-3.6.12.tar.xz && \
+    tar -xf Python-3.6.12.tar.xz && \
+    cd Python-3.6.12 && \
+    ./configure --enable-optimizations && \
+    make -j $(nproc) && \
+    make altinstall && \
+    python3.6 --version && \
+    rm -rf /python_installs
 
 # 3.7
 WORKDIR /python_installs
-RUN wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tar.xz
-RUN tar -xf Python-3.7.9.tar.xz
-WORKDIR Python-3.7.9
-RUN ./configure --enable-optimizations
-RUN make -j $(nproc)
-RUN make altinstall
-RUN python3.7 --version
+RUN wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tar.xz && \
+    tar -xf Python-3.7.9.tar.xz && \
+    cd Python-3.7.9 && \
+    ./configure --enable-optimizations && \
+    make -j $(nproc) && \
+    make altinstall && \
+    python3.7 --version && \
+    rm -rf /python_installs
 
 # 3.8
 WORKDIR /python_installs
-RUN wget https://www.python.org/ftp/python/3.8.7/Python-3.8.7.tar.xz
-RUN tar -xf Python-3.8.7.tar.xz
-WORKDIR Python-3.8.7
-RUN ./configure --enable-optimizations
-RUN make -j $(nproc)
-RUN make altinstall
-RUN python3.8 --version
+RUN wget https://www.python.org/ftp/python/3.8.7/Python-3.8.7.tar.xz && \
+    tar -xf Python-3.8.7.tar.xz && \
+    cd Python-3.8.7 && \
+    ./configure --enable-optimizations && \
+    make -j $(nproc) && \
+    make altinstall && \
+    python3.8 --version && \
+    rm -rf /python_installs
 
 # 3.9
 WORKDIR /python_installs
-RUN wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tar.xz
-RUN tar -xf Python-3.9.1.tar.xz
-WORKDIR Python-3.9.1
-RUN ./configure --enable-optimizations
-RUN make -j $(nproc)
-RUN make altinstall
-RUN python3.9 --version
+RUN wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tar.xz && \
+    tar -xf Python-3.9.1.tar.xz && \
+    cd Python-3.9.1 && \
+    ./configure --enable-optimizations && \
+    make -j $(nproc) && \
+    make altinstall && \
+    python3.9 --version && \
+    rm -rf /python_installs
 
 # Cleanup
 WORKDIR /
-RUN rm -rf /python_installs
 
 # Install Arduino-cli
 RUN curl -fsSL --retry 5 --retry-delay 5 https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/usr/bin sh
