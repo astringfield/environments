@@ -65,14 +65,8 @@ docker run hello-world
 
 # Nvidia tookit install
 echo ensure nvidia drivers are up to date
-cd $HOME/AUR
-git clone https://aur.archlinux.org/libnvidia-container.git
-cd libnvidia-container
-makepkg -sri
-cd $HOME/AUR
-git clone https://aur.archlinux.org/nvidia-container-toolkit.git
-cd nvidia-container-toolkit
-makepkg -sri
+yay -S libnvidia-container
+yay -S nvidia-container-toolkit
 docker run --rm --gpus all nvidia/cuda:10.0-base nvidia-smi
 
 # To change the default runtime to nvidi-container-runtime to grant gpu access during docker build
@@ -88,8 +82,5 @@ sudo tee /etc/docker/daemon.json <<EOF
 EOF
 sudo systemctl stop docker.service
 sudo pkill -SIGHUP dockerd
-cd $HOME/AUR
-git clone https://aur.archlinux.org/nvidia-container-runtime.git
-cd nvidia-container-runtime
-makepkg -sri
+yay -S nvidia-container-runtime
 sudo systemctl restart docker.service
