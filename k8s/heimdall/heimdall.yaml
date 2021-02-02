@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heimdall-deployment
+  labels:
+    app: heimdall
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: heimdall
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: heimdall
+    spec:
+      containers:
+        - image: "ghcr.io/linuxserver/heimdall"
+          name: heimdall
+          resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: heimdall-service
+  labels:
+    app: heimdall
+spec:
+  selector:
+    app: heimdall
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  type: LoadBalancer
