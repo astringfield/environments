@@ -10,8 +10,8 @@ else
     DEVICES="$1"
 fi
 
-#name for container
-NAME="pytorch1.4_cuda10.1"
+# Name for container
+NAME="pytorch1.7_cuda11.2"
 # Hostname of container (used in tensorboard filenames)
 HOSTNAME="dock"
 docker run --rm -it \

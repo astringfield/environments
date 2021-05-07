@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
-#name for docker image
-NAME="pytorch1.6_cuda10.1"
+# Name for docker image
+NAME="pytorch1.7_cuda11.2"
 
 # Get timezone of host machine and pass to builder
 TZ=$(cat /etc/timezone)
