@@ -30,8 +30,10 @@ docker run --rm -it \
     --hostname $HOSTNAME \
     -v $HOME/.jupyter:$HOME/.jupyter \
     -v $HOME/repositories:/repositories \
+    -v /nas:/nas \
     -v /etc/localtime:/etc/localtime:ro \
     -u $USER \
     -p "$PORT:$PORT" \
     $NAME \
-    jupyter lab --port="$PORT" --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.token='change_me' .
+    jupyter lab --port="$PORT" --ip=0.0.0.0 --allow-root --no-browser . 
+    # --NotebookApp.token='change_me'

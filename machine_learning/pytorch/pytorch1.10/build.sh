@@ -8,4 +8,8 @@ NAME="$( echo $PARENT_DIR | sed 's:.*/::' )"
 TZ=$(cat /etc/timezone)
 
 # Build docker image using the host USER, UID and TZ.
-cd $PARENT_DIR && docker build --build-arg HOST_USER=$USER --build-arg HOST_UID=$UID --build-arg TZ=$TZ -t $NAME .
+cd $PARENT_DIR && DOCKER_BUILDKIT=1 docker build \
+    --build-arg HOST_USER=$USER --build-arg HOST_UID=$UID --build-arg TZ=$TZ \
+    -t $NAME --secret id=pipconf,src=.pip.conf \
+    --progress=plain \
+    --cache-from $NAME .
