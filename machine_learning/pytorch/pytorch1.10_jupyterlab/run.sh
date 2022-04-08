@@ -31,6 +31,7 @@ docker run --rm -it \
     -v $HOME/.jupyter:$HOME/.jupyter \
     -v $HOME/repositories:/repositories \
     -v /nas:/nas \
+    -v /ssd:/ssd \
     -v /etc/localtime:/etc/localtime:ro \
     -u $USER \
     -p "$PORT:$PORT" \

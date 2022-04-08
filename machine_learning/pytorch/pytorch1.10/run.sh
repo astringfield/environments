@@ -21,6 +21,8 @@ docker run --rm -it \
     --gpus "\"device=$DEVICES\"" \
     --hostname $HOSTNAME \
     -v $HOME/repositories:/repositories \
+    -v /nas:/nas \
+    -v /ssd:/ssd \
     -v /etc/localtime:/etc/localtime:ro \
     -u $USER \
     $NAME bash
