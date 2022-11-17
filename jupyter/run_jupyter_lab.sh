@@ -1,0 +1,1 @@
+jupyter lab --ip='threadripper.somnomed.local' --port=7000 --notebook-dir /home/astringfield
