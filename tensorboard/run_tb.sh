@@ -2,7 +2,7 @@
 set -e
 # Script to run a tensorboard session independant of any other environments
 
-LOGDIR=/home/astringfield/tensorboard/firefly_experiments/live
+LOGDIR=/home/astringfield/tensorboard/
 
 REL_PATH_TO_THIS_SCRIPT=`dirname $0`
 cd $REL_PATH_TO_THIS_SCRIPT
